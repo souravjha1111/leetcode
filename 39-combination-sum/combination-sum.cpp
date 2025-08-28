@@ -18,11 +18,7 @@ void find_target_sum(vector<vector<int>> &result, int curr_sum, int target, int 
     }    
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
-        vector<vector<int>> result;
-     if(candidates.size() == 0){
-        return {};
-    }
-    
+        vector<vector<int>> result;   
         int curr_sum =0;
         vector<int> temp;
         find_target_sum(result, curr_sum, target, 0, temp,candidates);
