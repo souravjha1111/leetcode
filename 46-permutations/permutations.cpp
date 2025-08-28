@@ -1,16 +1,16 @@
 class Solution {
 public:
-    void solve(set<vector<int>>& res, vector<int>& nums,vector<int>& temp, int freq[] ){
+    void solve(set<vector<int>>& res, vector<int>& nums,vector<int>& temp, vector<bool> freq ){
         if(temp.size()==nums.size()){
             res.insert(temp);
             return;
         }
         for(int i=0; i<nums.size(); i++){
             if(!freq[i]){
-                freq[i]=1;
+                freq[i]=true;
                 temp.push_back(nums[i]);
                 solve(res,nums,temp,freq);
-                freq[i]=0;
+                freq[i]=false;
                 temp.pop_back();
             }
         }
@@ -18,9 +18,9 @@ public:
     
     vector<vector<int>> permute(vector<int>& nums) {
         set<vector<int>> res;
-        int freq[nums.size()];
+        vector<bool> freq(nums.size(), false);
         for(int i=0; i<nums.size(); i++)
-            freq[i]=0;
+            freq[i]=false;
         vector<int> temp;
         solve(res, nums, temp, freq);
         vector<vector<int>> finalv;
